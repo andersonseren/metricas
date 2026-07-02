@@ -1,5 +1,4 @@
 import os
-import certifi
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime
@@ -10,7 +9,7 @@ mongo_uri = os.getenv('MONGODB_URI')
 if not mongo_uri:
     raise RuntimeError("Falta MONGODB_URI")
 
-client = MongoClient(mongo_uri, tlsCAFile=certifi.where())
+client = MongoClient(mongo_uri)   # Sin opciones extra
 db = client['gamehub']
 reviews_col = db['reviews']
 
